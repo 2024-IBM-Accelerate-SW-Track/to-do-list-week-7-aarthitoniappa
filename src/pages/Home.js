@@ -10,6 +10,7 @@ class Home extends Component {
     super();
     this.state = {
       todos: [],
+      showImage: false, // Add state for showing the GIF
     };
   }
 
@@ -38,8 +39,8 @@ class Home extends Component {
     // dealing with a larger data sensitive project.
     todo.id = Math.random();
 
-     // Send Task Item to database as a json object upon submission
-     const jsonObject = {
+    // Send Task Item to database as a json object upon submission
+    const jsonObject = {
       id: todo.id,
       task: todo.content,
       currentDate: todo.date,
@@ -55,15 +56,22 @@ class Home extends Component {
       }
     }).then(res => {
         console.log(res.data.message);
+        // Show the GIF when item is added successfully
+        this.setState({ showImage: true });
+        // Hide the GIF after 2 seconds
+        setTimeout(() => {
+          this.setState({ showImage: false });
+        }, 2000);
     });
 
-    // Create a array that contains the current array and the new todo item
+    // Create an array that contains the current array and the new todo item
     let new_list = [...this.state.todos, todo];
     // Update the local state with the new array.
     this.setState({
       todos: new_list,
     });
   };
+
   render() {
     return (
       <div className="Home">
@@ -74,6 +82,13 @@ class Home extends Component {
         {/* When returning the Todos component, todos is a prop passed to the todos.js file
          to format and render the current todo list state */}
         <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} />
+        {this.state.showImage && (
+          <img
+            src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2FmZjVyenR1eDhmcjIxc2Z3OWphcm1hODZpNWJyeHpnY2YzdmQ1NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26BRQSNJRFAV5fsGI/giphy.gif"
+            alt="Frustrated GIF"
+            style={{ marginTop: '15px', width: '45%', maxWidth: '300px' }}
+          />
+        )}
       </div>
     );
   }

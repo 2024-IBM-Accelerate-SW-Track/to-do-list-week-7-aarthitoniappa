@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap'); 
+
 .split {
   height: 100%;
   width: 50%;
@@ -15,6 +17,7 @@
 
 .right {
   right: 0;
+  background-color: rgb(154, 230, 255);
 }
 
 .centered {
@@ -26,14 +29,22 @@
 }
 
 .name_title {
-  font-size: 48px;
-  color: black;
-  text-align: left;
+  font-family: 'Chalkduster', fantasy; 
+  font-size: 68px;
+  color: rgb(245, 161, 248);
+  text-align: center;
   padding-bottom: 20px;
 }
 
 .brief_description {
-  text-align: left;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+}
+
+.ps {
+  text-align: center;
+  font-size: 15px;
 }
 
 .profile_image {
