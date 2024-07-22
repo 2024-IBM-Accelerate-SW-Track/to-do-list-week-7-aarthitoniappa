@@ -15,26 +15,22 @@ class SearchTodo extends Component {
     });
   };
   
-
   handleSubmit = (e) => {
-    //Begin Here
     e.preventDefault();  
-    // HTTP Client to send a GET request
     Axios({
       method: "GET",
-      url: "http://localhost:8080/items/search",
+      url: "http://localhost:8080/get/searchitems", 
       headers: {
         "Content-Type": "application/json" 
       },
       params: {
         taskname: this.state.content
-      }
+      },
+      withCredentials: true 
     }).then(res => {
       this.setState({
         tmpdata: JSON.stringify(res.data),
       });
-      // uncomment to see from the browser console log what is returned 
-      //console.log(this.state.tmpdata);
     });
   };
   
@@ -52,7 +48,7 @@ class SearchTodo extends Component {
           <Button
             id="search-item-button"
             name='submit'
-            style={{ marginLeft: "10px",marginTop:10 }}
+            style={{ marginLeft: "10px", marginTop: 10 }}
             onClick={this.handleSubmit}
             variant="contained"
             color="primary"
